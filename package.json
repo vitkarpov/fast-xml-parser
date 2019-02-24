@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "gts": "^0.9.0"
+  },
+  "name": "ts-html-parser",
+  "version": "0.0.1",
+  "description": "A blazing fast HTML parser; on TypeScript with zero dependencies",
+  "main": "dst/index.js",
+  "repository": "https://github.com/vitkarpov/ts-html-parser",
+  "author": {
+    "name": "Viktor Karpov",
+    "email": "viktor.s.karpov@gmail.com"
+  },
+  "license": "MIT"
+}
