@@ -9,4 +9,10 @@ exports[`parse
       <h1>Homepage</h1>
     </body>
   </html>
- 1`] = `Node {}`;
+ 1`] = `
+Node {
+  "children": Array [],
+  "name": "",
+  "type": 0,
+}
+`;
