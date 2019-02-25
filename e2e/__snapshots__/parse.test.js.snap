@@ -11,8 +11,43 @@ exports[`parse
   </html>
  1`] = `
 Node {
-  "children": Array [],
-  "name": "",
-  "type": 0,
+  "children": Array [
+    Node {
+      "children": Array [
+        Node {
+          "children": Array [
+            Node {
+              "children": Array [],
+              "name": "Hello, world!",
+              "type": 3,
+            },
+          ],
+          "name": "title",
+          "type": 1,
+        },
+      ],
+      "name": "head",
+      "type": 1,
+    },
+    Node {
+      "children": Array [
+        Node {
+          "children": Array [
+            Node {
+              "children": Array [],
+              "name": "Homepage",
+              "type": 3,
+            },
+          ],
+          "name": "h1",
+          "type": 1,
+        },
+      ],
+      "name": "body",
+      "type": 1,
+    },
+  ],
+  "name": "html",
+  "type": 1,
 }
 `;
