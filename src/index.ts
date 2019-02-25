@@ -1,5 +1,5 @@
-import Node from './node';
+import {Node} from './node';
 
 export function parse(input: string): Node {
-  return new Node()
+  return new Node();
 }
