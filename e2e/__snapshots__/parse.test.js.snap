@@ -1,15 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`parse 
-  <html>
-    <head>
-      <title>Hello, world!</title>
-    </head>
-    <body>
-      <h1>Homepage</h1>
-    </body>
-  </html>
- 1`] = `
+exports[`parse html 1`] = `
 Node {
   "children": Array [
     Node {
