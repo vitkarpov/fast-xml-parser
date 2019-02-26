@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`parse attributes 1`] = `
+exports[`attributes 1`] = `
 Node {
   "attrs": Object {},
   "children": Array [
@@ -76,56 +76,6 @@ Node {
             },
           ],
           "name": "button",
-          "type": 1,
-        },
-      ],
-      "name": "body",
-      "type": 1,
-    },
-  ],
-  "name": "html",
-  "type": 1,
-}
-`;
-
-exports[`parse basic 1`] = `
-Node {
-  "attrs": Object {},
-  "children": Array [
-    Node {
-      "attrs": Object {},
-      "children": Array [
-        Node {
-          "attrs": Object {},
-          "children": Array [
-            Node {
-              "attrs": Object {},
-              "children": Array [],
-              "name": "Hello, world!",
-              "type": 3,
-            },
-          ],
-          "name": "title",
-          "type": 1,
-        },
-      ],
-      "name": "head",
-      "type": 1,
-    },
-    Node {
-      "attrs": Object {},
-      "children": Array [
-        Node {
-          "attrs": Object {},
-          "children": Array [
-            Node {
-              "attrs": Object {},
-              "children": Array [],
-              "name": "Homepage",
-              "type": 3,
-            },
-          ],
-          "name": "h1",
           "type": 1,
         },
       ],
