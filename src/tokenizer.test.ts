@@ -25,6 +25,22 @@ describe('Tokenizer', () => {
        new Node({type: TYPES.CLOSING_TAG, name: 'head'}),
        new Node({type: TYPES.CLOSING_TAG, name: 'html'}), new Node()
      ]
+   },
+   {
+     input: '<h1 id="test0"title="value5" class=value2 disabled></h1>',
+     expected: [
+       new Node({
+         type: TYPES.OPENING_TAG,
+         name: 'h1',
+         attrs: {
+           id: 'test0',
+           title: 'value5',
+           class: 'value2',
+           disabled: 'true'
+         }
+       }),
+       new Node({type: TYPES.CLOSING_TAG, name: 'h1'}), new Node()
+     ]
    }].forEach(({input, expected}) => {
     it(input, () => {
       const tokenizer = new Tokenizer(input);

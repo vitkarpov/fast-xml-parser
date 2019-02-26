@@ -1,4 +1,5 @@
 import {Node, TYPES} from './node';
+import {parseAttrs} from './utils';
 
 enum BRACKETS {
   OPENING = '<',
@@ -38,9 +39,18 @@ export class Tokenizer {
       });
     }
 
-    return new Node({
-      type: TYPES.OPENING_TAG,
-      name: this.input.substr(next + 1, this.curr - next - 2)
-    });
+    const betweenBrackets = this.input.substring(next + 1, this.curr - 1);
+    const whitespacePos = betweenBrackets.indexOf(' ');
+    let name, attrs;
+
+    if (whitespacePos > -1) {
+      name = betweenBrackets.substring(0, whitespacePos);
+      attrs = parseAttrs(betweenBrackets.substring(whitespacePos + 1));
+    } else {
+      name = betweenBrackets;
+      attrs = {};
+    }
+
+    return new Node({type: TYPES.OPENING_TAG, name, attrs});
   }
 }
