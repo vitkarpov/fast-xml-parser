@@ -1,4 +1,4 @@
-# 🚀Fast-XML-parser
+# 🚀 Fast-XML-parser
 
 > Is a fast XML parser in TypeScript with zero dependencies
 
