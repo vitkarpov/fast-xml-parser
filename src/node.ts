@@ -1,4 +1,4 @@
-enum TYPES {
+export enum TYPES {
   UNKNOWN,
   OPENING_TAG,
   CLOSING_TAG,
