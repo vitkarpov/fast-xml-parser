@@ -1,13 +1,105 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`parse trivial 1`] = `
+exports[`parse attributes 1`] = `
 Node {
+  "attrs": Object {},
   "children": Array [
     Node {
+      "attrs": Object {},
       "children": Array [
         Node {
+          "attrs": Object {},
           "children": Array [
             Node {
+              "attrs": Object {},
+              "children": Array [],
+              "name": "Attributes test",
+              "type": 3,
+            },
+          ],
+          "name": "title",
+          "type": 1,
+        },
+      ],
+      "name": "head",
+      "type": 1,
+    },
+    Node {
+      "attrs": Object {},
+      "children": Array [
+        Node {
+          "attrs": Object {
+            "class": "value0",
+            "id": "test0",
+            "title": "value1",
+          },
+          "children": Array [
+            Node {
+              "attrs": Object {},
+              "children": Array [],
+              "name": "class=\\"value0\\" title=\\"value1\\"",
+              "type": 3,
+            },
+          ],
+          "name": "button",
+          "type": 1,
+        },
+        Node {
+          "attrs": Object {
+            "class": "value2",
+            "disabled": "true",
+            "id": "test1",
+          },
+          "children": Array [
+            Node {
+              "attrs": Object {},
+              "children": Array [],
+              "name": "class=value2 disabled",
+              "type": 3,
+            },
+          ],
+          "name": "button",
+          "type": 1,
+        },
+        Node {
+          "attrs": Object {
+            "class": "value4",
+            "id": "test2",
+            "title": "value5",
+          },
+          "children": Array [
+            Node {
+              "attrs": Object {},
+              "children": Array [],
+              "name": "class=\\"value4\\"title=\\"value5\\"",
+              "type": 3,
+            },
+          ],
+          "name": "button",
+          "type": 1,
+        },
+      ],
+      "name": "body",
+      "type": 1,
+    },
+  ],
+  "name": "html",
+  "type": 1,
+}
+`;
+
+exports[`parse basic 1`] = `
+Node {
+  "attrs": Object {},
+  "children": Array [
+    Node {
+      "attrs": Object {},
+      "children": Array [
+        Node {
+          "attrs": Object {},
+          "children": Array [
+            Node {
+              "attrs": Object {},
               "children": Array [],
               "name": "Hello, world!",
               "type": 3,
@@ -21,10 +113,13 @@ Node {
       "type": 1,
     },
     Node {
+      "attrs": Object {},
       "children": Array [
         Node {
+          "attrs": Object {},
           "children": Array [
             Node {
+              "attrs": Object {},
               "children": Array [],
               "name": "Homepage",
               "type": 3,
