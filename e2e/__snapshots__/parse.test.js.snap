@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`parse html 1`] = `
+exports[`parse trivial 1`] = `
 Node {
   "children": Array [
     Node {
