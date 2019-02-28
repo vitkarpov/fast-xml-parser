@@ -41,6 +41,14 @@ describe('Tokenizer', () => {
        }),
        new Node({type: TYPES.CLOSING_TAG, name: 'h1'}), new Node()
      ]
+   },
+   {
+     input: '<!DOCTYPE html><html></html>',
+     expected: [
+       new Node({type: TYPES.DIRECTIVE, name: '!DOCTYPE html'}),
+       new Node({type: TYPES.OPENING_TAG, name: 'html'}),
+       new Node({type: TYPES.CLOSING_TAG, name: 'html'}), new Node()
+     ]
    }].forEach(({input, expected}) => {
     it(input, () => {
       const tokenizer = new Tokenizer(input);

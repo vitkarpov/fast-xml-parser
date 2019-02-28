@@ -45,6 +45,11 @@ export class Tokenizer {
 
     if (whitespacePos > -1) {
       name = betweenBrackets.substring(0, whitespacePos);
+
+      if (name.toLocaleLowerCase() === '!doctype') {
+        return new Node({type: TYPES.DIRECTIVE, name: betweenBrackets});
+      }
+
       attrs = parseAttrs(betweenBrackets.substring(whitespacePos + 1));
     } else {
       name = betweenBrackets;
