@@ -1,5 +1,3 @@
-import {ok} from 'assert';
-
 import {Node, TYPES} from './node';
 import {Tokenizer} from './tokenizer';
 
