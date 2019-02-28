@@ -1,6 +1,4 @@
-import {ok} from 'assert';
-
-import {Node, TYPES} from './node';
+import {Node, TYPES, VOID_ELEMENTS} from './node';
 import {Tokenizer} from './tokenizer';
 
 export function parse(input: string): Node {
@@ -19,7 +17,10 @@ export function parse(input: string): Node {
 
     if (next.type === TYPES.OPENING_TAG) {
       stack[stack.length - 1].children.push(next);
-      stack.push(next);
+
+      if (!VOID_ELEMENTS.includes(next.name)) {
+        stack.push(next);
+      }
     } else if (next.type === TYPES.TEXT) {
       stack[stack.length - 1].children.push(next);
     } else if (next.type === TYPES.CLOSING_TAG) {

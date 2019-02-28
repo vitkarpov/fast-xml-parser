@@ -17,6 +17,22 @@ Node {
           "attrs": Object {},
           "children": Array [
             Node {
+              "attrs": Object {
+                "href": "http://example.org/",
+              },
+              "children": Array [],
+              "name": "link",
+              "type": "OPENING_TAG",
+            },
+            Node {
+              "attrs": Object {
+                "charset": "utf-8",
+              },
+              "children": Array [],
+              "name": "meta",
+              "type": "OPENING_TAG",
+            },
+            Node {
               "attrs": Object {},
               "children": Array [
                 Node {

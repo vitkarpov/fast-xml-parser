@@ -7,6 +7,11 @@ export enum TYPES {
   FRAGMENT = 'FRAGMENT'
 }
 
+export const VOID_ELEMENTS = [
+  'area', 'base', 'br', 'col', 'command', 'embeded', 'hr', 'img', 'input',
+  'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'
+];
+
 interface NodeConfig {
   type: TYPES;
   name: string;
