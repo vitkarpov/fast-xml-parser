@@ -1,8 +1,8 @@
 export enum TYPES {
   UNKNOWN,
-  OPENING_TAG,
-  CLOSING_TAG,
-  TEXT
+  OPENING_TAG = 'OPENING_TAG',
+  CLOSING_TAG = 'CLOSING_TAG',
+  TEXT = 'TEXT'
 }
 
 interface NodeConfig {
