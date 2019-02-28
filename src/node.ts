@@ -2,7 +2,9 @@ export enum TYPES {
   UNKNOWN,
   OPENING_TAG = 'OPENING_TAG',
   CLOSING_TAG = 'CLOSING_TAG',
-  TEXT = 'TEXT'
+  TEXT = 'TEXT',
+  DIRECTIVE = 'DIRECTIVE',
+  FRAGMENT = 'FRAGMENT'
 }
 
 interface NodeConfig {

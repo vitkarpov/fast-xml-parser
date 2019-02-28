@@ -6,23 +6,9 @@ Node {
   "children": Array [
     Node {
       "attrs": Object {},
-      "children": Array [
-        Node {
-          "attrs": Object {},
-          "children": Array [
-            Node {
-              "attrs": Object {},
-              "children": Array [],
-              "name": "Hello, world!",
-              "type": "TEXT",
-            },
-          ],
-          "name": "title",
-          "type": "OPENING_TAG",
-        },
-      ],
-      "name": "head",
-      "type": "OPENING_TAG",
+      "children": Array [],
+      "name": "!DOCTYPE html",
+      "type": "DIRECTIVE",
     },
     Node {
       "attrs": Object {},
@@ -32,20 +18,47 @@ Node {
           "children": Array [
             Node {
               "attrs": Object {},
-              "children": Array [],
-              "name": "Homepage",
-              "type": "TEXT",
+              "children": Array [
+                Node {
+                  "attrs": Object {},
+                  "children": Array [],
+                  "name": "Hello, world!",
+                  "type": "TEXT",
+                },
+              ],
+              "name": "title",
+              "type": "OPENING_TAG",
             },
           ],
-          "name": "h1",
+          "name": "head",
+          "type": "OPENING_TAG",
+        },
+        Node {
+          "attrs": Object {},
+          "children": Array [
+            Node {
+              "attrs": Object {},
+              "children": Array [
+                Node {
+                  "attrs": Object {},
+                  "children": Array [],
+                  "name": "Homepage",
+                  "type": "TEXT",
+                },
+              ],
+              "name": "h1",
+              "type": "OPENING_TAG",
+            },
+          ],
+          "name": "body",
           "type": "OPENING_TAG",
         },
       ],
-      "name": "body",
+      "name": "html",
       "type": "OPENING_TAG",
     },
   ],
-  "name": "html",
-  "type": "OPENING_TAG",
+  "name": "root",
+  "type": "FRAGMENT",
 }
 `;

@@ -5,7 +5,12 @@ import {Tokenizer} from './tokenizer';
 
 export function parse(input: string): Node {
   const tokenizer = new Tokenizer(input);
-  const root = tokenizer.next();
+  let root = tokenizer.next();
+
+  if (root.type === TYPES.DIRECTIVE) {
+    root = new Node({type: TYPES.FRAGMENT, name: 'root', children: [root]});
+  }
+
   const stack = [root];
   let next = root;
 
@@ -21,8 +26,6 @@ export function parse(input: string): Node {
       stack.pop();
     }
   }
-
-  ok(stack.length === 0, 'The tree is malformed');
 
   return root;
 }
