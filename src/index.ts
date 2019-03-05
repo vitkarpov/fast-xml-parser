@@ -30,3 +30,7 @@ export function parse(input: string): Node {
 
   return root;
 }
+
+export function stringify(root: Node): string {
+  return '';
+}

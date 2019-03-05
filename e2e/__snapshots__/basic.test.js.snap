@@ -78,3 +78,5 @@ Node {
   "type": "FRAGMENT",
 }
 `;
+
+exports[`basic stringify 1`] = `""`;
