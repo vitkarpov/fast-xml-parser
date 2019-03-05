@@ -15,14 +15,11 @@ export function parse(input: string): Node {
   while (next.type !== TYPES.UNKNOWN) {
     next = tokenizer.next();
 
-    if (next.type === TYPES.OPENING_TAG) {
+    if (next.type === TYPES.SELF_CLOSING || next.type === TYPES.TEXT) {
       stack[stack.length - 1].children.push(next);
-
-      if (!VOID_ELEMENTS.includes(next.name)) {
-        stack.push(next);
-      }
-    } else if (next.type === TYPES.TEXT) {
+    } else if (next.type === TYPES.OPENING_TAG) {
       stack[stack.length - 1].children.push(next);
+      stack.push(next);
     } else if (next.type === TYPES.CLOSING_TAG) {
       stack.pop();
     }

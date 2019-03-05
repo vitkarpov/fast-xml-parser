@@ -22,7 +22,7 @@ Node {
               },
               "children": Array [],
               "name": "link",
-              "type": "OPENING_TAG",
+              "type": "SELF_CLOSING",
             },
             Node {
               "attrs": Object {
@@ -30,7 +30,7 @@ Node {
               },
               "children": Array [],
               "name": "meta",
-              "type": "OPENING_TAG",
+              "type": "SELF_CLOSING",
             },
             Node {
               "attrs": Object {},
