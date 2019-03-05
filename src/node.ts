@@ -1,3 +1,5 @@
+export type Attrs = Record<string, string>;
+
 export enum TYPES {
   UNKNOWN,
   OPENING_TAG = 'OPENING_TAG',
@@ -17,14 +19,14 @@ interface NodeConfig {
   type: TYPES;
   name: string;
   children?: Node[];
-  attrs?: Record<string, string>;
+  attrs?: Attrs;
 }
 
 export class Node {
   type: TYPES;
   name: string;
   children: Node[];
-  attrs: Record<string, string>;
+  attrs: Attrs;
 
   constructor(config: Partial<NodeConfig> = {}) {
     this.children = config.children || [];

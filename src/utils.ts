@@ -1,3 +1,5 @@
+import {Attrs} from './node';
+
 /**
  * Deserialize a string of attributes.
  * Supports the following cases:
@@ -12,7 +14,7 @@ export function parseAttrs(input: string) {
   }
 
   const parts = input.split(' ');
-  const result: Record<string, string> = {};
+  const result: Attrs = {};
 
   for (let i = 0; i < parts.length; i++) {
     const item = parts[i];
