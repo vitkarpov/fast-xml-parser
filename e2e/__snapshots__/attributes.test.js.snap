@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`attributes 1`] = `
+exports[`attributes parse 1`] = `
 Node {
   "attrs": Object {},
   "children": Array [

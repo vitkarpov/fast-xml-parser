@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`basic 1`] = `
+exports[`basic parse 1`] = `
 Node {
   "attrs": Object {},
   "children": Array [
