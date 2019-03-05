@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`basic 1`] = `
+exports[`basic parse 1`] = `
 Node {
   "attrs": Object {},
   "children": Array [
@@ -22,7 +22,7 @@ Node {
               },
               "children": Array [],
               "name": "link",
-              "type": "OPENING_TAG",
+              "type": "SELF_CLOSING",
             },
             Node {
               "attrs": Object {
@@ -30,7 +30,7 @@ Node {
               },
               "children": Array [],
               "name": "meta",
-              "type": "OPENING_TAG",
+              "type": "SELF_CLOSING",
             },
             Node {
               "attrs": Object {},
@@ -78,3 +78,5 @@ Node {
   "type": "FRAGMENT",
 }
 `;
+
+exports[`basic stringify 1`] = `"<!DOCTYPE html><html><head><link href=\\"http://example.org/\\"><meta charset=\\"utf-8\\"><title>Hello, world!</title></head><body><h1>Homepage</h1></body></html>"`;

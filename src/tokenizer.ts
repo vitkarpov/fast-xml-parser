@@ -1,4 +1,4 @@
-import {Node, TYPES} from './node';
+import {Node, TYPES, VOID_ELEMENTS} from './node';
 import {parseAttrs} from './utils';
 
 enum BRACKETS {
@@ -54,6 +54,10 @@ export class Tokenizer {
     } else {
       name = betweenBrackets;
       attrs = {};
+    }
+
+    if (VOID_ELEMENTS.includes(name)) {
+      return new Node({type: TYPES.SELF_CLOSING, name, attrs});
     }
 
     return new Node({type: TYPES.OPENING_TAG, name, attrs});

@@ -1,5 +1,6 @@
 import {Node, TYPES, VOID_ELEMENTS} from './node';
 import {Tokenizer} from './tokenizer';
+import {stringifyAttrs} from './utils';
 
 export function parse(input: string): Node {
   const tokenizer = new Tokenizer(input);
@@ -15,18 +16,33 @@ export function parse(input: string): Node {
   while (next.type !== TYPES.UNKNOWN) {
     next = tokenizer.next();
 
-    if (next.type === TYPES.OPENING_TAG) {
+    if (next.type === TYPES.SELF_CLOSING || next.type === TYPES.TEXT) {
       stack[stack.length - 1].children.push(next);
-
-      if (!VOID_ELEMENTS.includes(next.name)) {
-        stack.push(next);
-      }
-    } else if (next.type === TYPES.TEXT) {
+    } else if (next.type === TYPES.OPENING_TAG) {
       stack[stack.length - 1].children.push(next);
+      stack.push(next);
     } else if (next.type === TYPES.CLOSING_TAG) {
       stack.pop();
     }
   }
 
   return root;
+}
+
+export function stringify(root: Node): string {
+  if (root.type === TYPES.FRAGMENT) {
+    return root.children.reduce((acc, node) => acc + stringify(node), '');
+  }
+  if (root.type === TYPES.TEXT) {
+    return root.name;
+  }
+
+  const attrs = stringifyAttrs(root.attrs);
+  let s = '<' + root.name + (attrs ? ' ' : '') + attrs + '>';
+
+  if (root.type === TYPES.OPENING_TAG) {
+    s += root.children.reduce((acc, node) => acc + stringify(node), '');
+    s += `</${root.name}>`;
+  }
+  return s;
 }

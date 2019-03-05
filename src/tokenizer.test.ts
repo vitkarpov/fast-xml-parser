@@ -49,6 +49,17 @@ describe('Tokenizer', () => {
        new Node({type: TYPES.OPENING_TAG, name: 'html'}),
        new Node({type: TYPES.CLOSING_TAG, name: 'html'}), new Node()
      ]
+   },
+   {
+     input: '<head><link href="https://google.com"></head>',
+     expected: [
+       new Node({type: TYPES.OPENING_TAG, name: 'head'}), new Node({
+         type: TYPES.SELF_CLOSING,
+         name: 'link',
+         attrs: {href: 'https://google.com'}
+       }),
+       new Node({type: TYPES.CLOSING_TAG, name: 'head'}), new Node()
+     ]
    }].forEach(({input, expected}) => {
     it(input, () => {
       const tokenizer = new Tokenizer(input);
