@@ -1,5 +1,6 @@
 import {Node, TYPES, VOID_ELEMENTS} from './node';
 import {Tokenizer} from './tokenizer';
+import {stringifyAttrs} from './utils';
 
 export function parse(input: string): Node {
   const tokenizer = new Tokenizer(input);
@@ -29,5 +30,19 @@ export function parse(input: string): Node {
 }
 
 export function stringify(root: Node): string {
-  return '';
+  if (root.type === TYPES.FRAGMENT) {
+    return root.children.reduce((acc, node) => acc + stringify(node), '');
+  }
+  if (root.type === TYPES.TEXT) {
+    return root.name;
+  }
+
+  const attrs = stringifyAttrs(root.attrs);
+  let s = '<' + root.name + (attrs ? ' ' : '') + attrs + '>';
+
+  if (root.type === TYPES.OPENING_TAG) {
+    s += root.children.reduce((acc, node) => acc + stringify(node), '');
+    s += `</${root.name}>`;
+  }
+  return s;
 }

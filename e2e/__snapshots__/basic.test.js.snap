@@ -79,4 +79,4 @@ Node {
 }
 `;
 
-exports[`basic stringify 1`] = `""`;
+exports[`basic stringify 1`] = `"<!DOCTYPE html><html><head><link href=\\"http://example.org/\\"><meta charset=\\"utf-8\\"><title>Hello, world!</title></head><body><h1>Homepage</h1></body></html>"`;
