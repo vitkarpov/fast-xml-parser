@@ -35,3 +35,11 @@ export function parseAttrs(input: string) {
 
   return result;
 }
+
+export function stringifyAttrs(attrs: Attrs): string {
+  return Object.keys(attrs)
+      .map((key) => {
+        return `${key}="${attrs[key]}"`;
+      })
+      .join(' ');
+}
