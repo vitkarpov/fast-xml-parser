@@ -1,4 +1,4 @@
-import {Node, TYPES, VOID_ELEMENTS} from './node';
+import {Node, TYPES} from './node';
 import {Tokenizer} from './tokenizer';
 import {stringifyAttrs} from './utils';
 

@@ -29,3 +29,19 @@ interface Node {
   attrs?: Record<string, string>;
 }
 ```
+
+You can manipulate the tree and serialize it back to HTML:
+
+```ts
+import {parse, stringify} from 'fast-xml-parser';
+
+const root = parse('<!DOCTYPE html><html>hello</html>');
+
+// change text node
+root.children[1].children[0].name = 'hello, world!'
+
+// <!DOCTYPE html><html>hello, world!</html>
+console.log(stringify(root));
+```
+
+> TBD: DOM API to manipulate the tree in a handy way
