@@ -1,4 +1,4 @@
-import {Node, TYPES, VOID_ELEMENTS} from './node';
+import {Attrs, Node, TYPES, VOID_ELEMENTS} from './node';
 import {parseAttrs} from './utils';
 
 enum BRACKETS {
@@ -6,60 +6,106 @@ enum BRACKETS {
   CLOSING = '>'
 }
 
+interface ParsingState {
+  result: Node;
+}
+
 export class Tokenizer {
   input: string;
-  curr: number;
+  openingTagPos: number;
+  closingTagPos: number;
 
   constructor(input: string) {
     this.input = input;
-    this.curr = 0;
+    this.openingTagPos = 0;
+    this.closingTagPos = -1;
+  }
+
+  private parseBetweenBrackets(input: string) {
+    const whitespacePos = input.indexOf(' ');
+    const name = whitespacePos > -1 ? input.substring(0, whitespacePos) : input;
+    const attrs = whitespacePos > -1 ?
+        parseAttrs(input.substring(whitespacePos + 1)) :
+        {};
+
+    return {name, attrs};
+  }
+
+  private parseText(state: ParsingState) {
+    // text is what we have between > and <
+    const text =
+        this.input.substring(this.closingTagPos + 1, this.openingTagPos).trim();
+
+    if (text.length === 0) {
+      return false;
+    }
+    state.result = new Node({type: TYPES.TEXT, name: text});
+    return true;
+  }
+
+  private parseSelfClosingTag(state: ParsingState, name: string, attrs: Attrs) {
+    if (!VOID_ELEMENTS.includes(name)) {
+      return false;
+    }
+    state.result = new Node({type: TYPES.SELF_CLOSING, name, attrs});
+    return true;
+  }
+
+  private parseDocType(
+      state: ParsingState, name: string, betweenBrackets: string) {
+    if (name.toLocaleLowerCase() !== '!doctype') {
+      return false;
+    }
+    state.result = new Node({type: TYPES.DIRECTIVE, name: betweenBrackets});
+    return true;
+  }
+
+  private parseClosingTag(state: ParsingState) {
+    if (this.input[this.openingTagPos + 1] !== '/') {
+      return false;
+    }
+    state.result = new Node({
+      type: TYPES.CLOSING_TAG,
+      // pass </ (2 chars) to end up at the name start
+      name: this.input.substring(this.openingTagPos + 2, this.closingTagPos)
+    });
+    return true;
   }
 
   next(): Node {
-    const next = this.input.indexOf(BRACKETS.OPENING, this.curr);
+    this.openingTagPos =
+        this.input.indexOf(BRACKETS.OPENING, this.closingTagPos);
 
-    if (next === -1) {
+    // if there's no more opening tags
+    // we have parsed everything
+    if (this.openingTagPos < 0) {
       return new Node();
     }
 
-    const text = this.input.substr(this.curr, next - this.curr).trim();
+    const state = {} as ParsingState;
 
-    if (text.length > 0) {
-      this.curr = next;
-
-      return new Node({type: TYPES.TEXT, name: text});
+    if (this.parseText(state)) {
+      this.closingTagPos = this.openingTagPos - 1;
+      return state.result;
     }
 
-    this.curr = this.input.indexOf(BRACKETS.CLOSING, next) + 1;
+    this.closingTagPos =
+        this.input.indexOf(BRACKETS.CLOSING, this.openingTagPos);
 
-    if (this.input[next + 1] === '/') {
-      return new Node({
-        type: TYPES.CLOSING_TAG,
-        name: this.input.substr(next + 2, this.curr - next - 3)
-      });
+    if (this.parseClosingTag(state)) {
+      return state.result;
     }
 
-    const betweenBrackets = this.input.substring(next + 1, this.curr - 1);
-    const whitespacePos = betweenBrackets.indexOf(' ');
-    let name, attrs;
+    const betweenBrackets =
+        this.input.substring(this.openingTagPos + 1, this.closingTagPos);
+    const {name, attrs} = this.parseBetweenBrackets(betweenBrackets);
 
-    if (whitespacePos > -1) {
-      name = betweenBrackets.substring(0, whitespacePos);
-
-      if (name.toLocaleLowerCase() === '!doctype') {
-        return new Node({type: TYPES.DIRECTIVE, name: betweenBrackets});
-      }
-
-      attrs = parseAttrs(betweenBrackets.substring(whitespacePos + 1));
-    } else {
-      name = betweenBrackets;
-      attrs = {};
+    if (this.parseSelfClosingTag(state, name, attrs)) {
+      return state.result;
     }
-
-    if (VOID_ELEMENTS.includes(name)) {
-      return new Node({type: TYPES.SELF_CLOSING, name, attrs});
+    if (this.parseDocType(state, name, betweenBrackets)) {
+      return state.result;
     }
-
     return new Node({type: TYPES.OPENING_TAG, name, attrs});
   }
 }
