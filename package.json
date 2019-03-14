@@ -24,7 +24,7 @@
     "prepare": "yarn run compile",
     "pretest": "yarn run compile",
     "posttest": "yarn run check",
-    "test": "jest e2e/*.test.js dst/*.test.js",
+    "test": "jest e2e/*.test.js dst/*.test.js --collect-coverage",
     "unit": "yarn run compile && jest dst/*.test.js"
   }
 }
