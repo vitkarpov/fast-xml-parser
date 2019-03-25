@@ -16,7 +16,8 @@ export function parse(input: string): Node {
   while (next.type !== TYPES.UNKNOWN) {
     next = tokenizer.next();
 
-    if (next.type === TYPES.SELF_CLOSING || next.type === TYPES.TEXT) {
+    if (next.type === TYPES.SELF_CLOSING || next.type === TYPES.TEXT ||
+        next.type === TYPES.CDATA_TAG) {
       stack[stack.length - 1].children.push(next);
     } else if (next.type === TYPES.OPENING_TAG) {
       stack[stack.length - 1].children.push(next);
@@ -35,6 +36,9 @@ export function stringify(root: Node): string {
   }
   if (root.type === TYPES.TEXT) {
     return root.name;
+  }
+  if (root.type === TYPES.CDATA_TAG) {
+    return `<![CDATA[${root.name}]]>`;
   }
 
   const attrs = stringifyAttrs(root.attrs);

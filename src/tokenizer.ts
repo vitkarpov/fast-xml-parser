@@ -72,6 +72,21 @@ export class Tokenizer {
     return true;
   }
 
+  private parseCData(state: ParsingState) {
+    const cdata = '<![CDATA[';
+
+    if (this.input.substr(this.openingTagPos, cdata.length) !== cdata) {
+      return false;
+    }
+    this.closingTagPos = this.input.indexOf(']]', this.openingTagPos + 1) + 2;
+    state.result = new Node({
+      type: TYPES.CDATA_TAG,
+      name: this.input.substring(
+          this.openingTagPos + cdata.length, this.closingTagPos - 2)
+    });
+    return true;
+  }
+
   next(): Node {
     this.openingTagPos =
         this.input.indexOf(BRACKETS.OPENING, this.closingTagPos);
@@ -83,6 +98,10 @@ export class Tokenizer {
     }
 
     const state = {} as ParsingState;
+
+    if (this.parseCData(state)) {
+      return state.result;
+    }
 
     if (this.parseText(state)) {
       this.closingTagPos = this.openingTagPos - 1;

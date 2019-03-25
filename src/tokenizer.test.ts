@@ -60,6 +60,14 @@ describe('Tokenizer', () => {
        }),
        new Node({type: TYPES.CLOSING_TAG, name: 'head'}), new Node()
      ]
+   },
+   {
+     input: '<html><![CDATA[<sender>John Smith</sender>]]></html>',
+     expected: [
+       new Node({type: TYPES.OPENING_TAG, name: 'html'}),
+       new Node({type: TYPES.CDATA_TAG, name: '<sender>John Smith</sender>'}),
+       new Node({type: TYPES.CLOSING_TAG, name: 'html'})
+     ]
    }].forEach(({input, expected}) => {
     it(input, () => {
       const tokenizer = new Tokenizer(input);

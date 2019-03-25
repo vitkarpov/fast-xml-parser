@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cdata parse 1`] = `
+Node {
+  "attrs": Object {},
+  "children": Array [
+    Node {
+      "attrs": Object {},
+      "children": Array [],
+      "name": "!DOCTYPE html",
+      "type": "DIRECTIVE",
+    },
+    Node {
+      "attrs": Object {},
+      "children": Array [
+        Node {
+          "attrs": Object {},
+          "children": Array [],
+          "name": "Within this Character Data block I can use double dashes as much as I want (along with <, &, ', and \\")",
+          "type": "CDATA_TAG",
+        },
+      ],
+      "name": "html",
+      "type": "OPENING_TAG",
+    },
+  ],
+  "name": "root",
+  "type": "FRAGMENT",
+}
+`;
+
+exports[`cdata stringify 1`] = `"<!DOCTYPE html><html><![CDATA[Within this Character Data block I can use double dashes as much as I want (along with <, &, ', and \\")]]></html>"`;

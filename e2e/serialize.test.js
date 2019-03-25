@@ -9,4 +9,10 @@ describe('serialize', () => {
 
     expect(stringify(root)).toEqual('<!DOCTYPE html><html>hello, world!</html>');
   });
+
+  it('cdata', () => {
+    const root = parse('<html><![CDATA[hello, world]]></html>');
+
+    expect(stringify(root)).toEqual('<html><![CDATA[hello, world]]></html>');
+  })
 });
